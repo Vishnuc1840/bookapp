@@ -1,0 +1,92 @@
+{%extends 'base.html'%}
+
+{%block body_block%}
+
+
+<div class="m-3">
+    Filter by Author
+    {%for aut in author%}
+    <a href="{%url 'book-list'%}?author={{aut}}">{{aut}}</a>
+
+
+    {%endfor%}
+
+
+
+</div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <form action="" method="post">
+                    {%csrf_token%}
+                    <input type="text" name="box" class="form_control">
+                    <button type="submit" class="btn btn-success">Search</button>
+                </form>
+
+
+
+
+
+            </div>
+            <div class="col-2"></div>
+        </div>
+
+
+    </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table class="table table-primary table-striped caption-top">
+                <tr >
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Pages</th>
+                    <th>Price</th>
+                    <td>Action</td>
+                </tr>
+
+                <h1>Book List</h1>
+
+                {%for book in data%}
+                <tr>
+                    <td>{{book.name}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.pages}}</td>
+                    <td>{{book.price}}</td>
+                    <td>
+                        <a href="{%url 'book-details' book.id%}">View</a>
+                        <a href="{%url 'book-delete' book.id%}">Delete</a>
+                        <a href="{%url 'book-edit' book.id%}">Edit</a>
+
+
+
+
+
+                    </td>
+                </tr>
+                
+            
+                {%endfor%}
+
+
+            </table>
+        </div>
+        <div class="col-2"></div>
+
+
+
+
+
+</div>
+
+</div>
+
+
+</body>
+</head>
+
+{%endblock%}
